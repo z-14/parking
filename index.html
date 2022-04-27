@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+</head>
+<body>
+    <h1>Parking System</h1>
+
+    <div class="container">
+        <div class="row-fluid">
+            <div class="col-lg-12">
+                <table id="table_id" class="display">
+                    <thead>
+                        <tr>
+                            <th>Parking Name</th>
+                            <th>Time In</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>f-slot1</td>
+                            <td ></td>
+                            <td id="fslot1">vacant</td>
+                        </tr>
+                        <tr >
+                            <td>f-slot2</td>
+                            <td></td>
+                            <td id="fslot2">vacant</td>
+                        </tr>
+                        <tr >
+                            <td>f-slot3</td>
+                            <td></td>
+                            <td id="fslot3">vacant</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col-lg 4">
+                <div id="container">
+                    <h1>QR Code Scanner</h1>
+            
+                    <a id="btn-scan-qr">
+                                <button>Scan QR</button>
+        
+                    </a>
+                    
+                    <canvas hidden="" id="qr-canvas"  >
+                        <div class="content">
+                            <video id="v_id" src=""></video>
+                        </div>
+                    </canvas>
+            
+                    <div id="qr-result" hidden="">
+                        <b>Data:</b> <span id="outputData"></span>
+                    </div>
+                </div>
+                
+            </div>
+       
+
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+<script src="https://rawgit.com/sitepoint-editors/jsqrcode/master/src/qr_packed.js">
+</script>
+
+    <script >
+        $(document).ready(function() {
+         var table =   $('#table_id').DataTable();
+       } );
+
+       function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    }
+    rawFile.send(null);
+}
+
+//usage:
+readTextFile("data.json", function(text){
+    var data = JSON.parse(text);
+    console.log(data.demo);
+});
+
+
+               </script>
+
+<script src="qrCodeScanner.js"></script>
+
+
+</body>
+</html>
